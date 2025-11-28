@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 input;
     private Rigidbody2D playerRb;
     private Animator playerAnimator;
+    public bool gameOver;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
