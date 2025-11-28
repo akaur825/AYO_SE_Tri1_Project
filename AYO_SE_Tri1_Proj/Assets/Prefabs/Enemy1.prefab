@@ -127,8 +127,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.6060358}
-  m_Radius: 0.39396417
+  m_Offset: {x: -0.034006715, y: -0.6016678}
+  m_Radius: 0.4879132
 --- !u!50 &7699076175086670887
 Rigidbody2D:
   serializedVersion: 5
@@ -170,5 +170,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   speed: 2
   player: {fileID: 0}
+  enemy: {fileID: 3535596099349856183}
   enemyMovement: {fileID: 11400000, guid: 1b45a1f6de9d1f74d9ca3ad79870fe40, type: 2}
   timer: 15
+  minSpawnTime: 5
+  maxSpawnTime: 10
+  gameEnded: 0
+  spawnPoint: {fileID: 0}
