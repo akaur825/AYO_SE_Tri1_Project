@@ -9,7 +9,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
-    [SerializeField] 
+    [SerializeField]
     private GameObject enemy;
 
     [SerializeField]
@@ -24,8 +24,10 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private float maxSpawnTime;
 
+    [SerializeField]
+    private Transform spawnPoint;
+
     public bool gameEnded = false;
-    public Transform spawnPoint;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -52,7 +54,7 @@ public class EnemyController : MonoBehaviour
 
     void SpawnEnemy()
     {
-            Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
+        Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
     }
 
     // Update is called once per frame
