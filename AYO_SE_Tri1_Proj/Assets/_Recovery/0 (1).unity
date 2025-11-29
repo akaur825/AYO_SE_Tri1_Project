@@ -1157,6 +1157,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1171684492 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4575891385969164655, guid: b781a8df408c47c4b892300eb4922221, type: 3}
+  m_PrefabInstance: {fileID: 1571233818675746713}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &1334973450
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1260,7 +1265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AppleMovement
   effectPrefabs:
-  - {fileID: 4575891385969164655, guid: b781a8df408c47c4b892300eb4922221, type: 3}
+  - {fileID: 1171684492}
 --- !u!4 &1439019878
 Transform:
   m_ObjectHideFlags: 0
@@ -1769,10 +1774,6 @@ PrefabInstance:
     - target: {fileID: 4575891385969164655, guid: b781a8df408c47c4b892300eb4922221, type: 3}
       propertyPath: m_Name
       value: Apple
-      objectReference: {fileID: 0}
-    - target: {fileID: 4575891385969164655, guid: b781a8df408c47c4b892300eb4922221, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5438713208071316849, guid: b781a8df408c47c4b892300eb4922221, type: 3}
       propertyPath: m_LocalPosition.x

@@ -1,17 +1,23 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed = 5.0f;
+    private float speedNormal = 5.0f;
     private Vector2 input;
     private Rigidbody2D playerRb;
     private Animator playerAnimator;
     public bool gameOver;
+    private bool hasEffect;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
+        hasEffect = false;
 
     }
 
@@ -32,5 +38,27 @@ public class PlayerController : MonoBehaviour
     {
         playerRb.linearVelocity = input * speed;
         Debug.Log(playerRb.linearVelocity);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (hasEffect) {return;}
+
+        if (other.gameObject.CompareTag("AppleDebuff"))
+        {
+            Destroy(other.gameObject);
+            hasEffect = true;
+            speed = 3.0f;
+            StartCoroutine(EffectCooldown());
+        }
+
+       
+    }
+
+   IEnumerator EffectCooldown()
+    {
+        yield return new WaitForSeconds(7);
+        hasEffect = false;
+        speed = speedNormal;
     }
 }
