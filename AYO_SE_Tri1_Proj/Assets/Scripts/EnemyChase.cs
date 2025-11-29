@@ -6,6 +6,6 @@ using UnityEngine;
     {
         public override Vector2 MoveTowards(Transform enemy, Transform player, float speed)
         {
-        return Vector2.MoveTowards(enemy.position, player.position, speed * Time.deltaTime);
+            return Vector2.MoveTowards(enemy.position, player.position, speed * Time.deltaTime);
         }
     }
