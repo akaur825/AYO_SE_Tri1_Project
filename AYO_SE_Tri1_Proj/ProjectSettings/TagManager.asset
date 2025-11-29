@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - AppleDebuff
+  - LemonBuff
   layers:
   - Default
   - TransparentFX
