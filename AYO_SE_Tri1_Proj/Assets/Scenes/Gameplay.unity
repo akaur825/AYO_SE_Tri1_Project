@@ -290,6 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   speed: 5
+  gameOver: 0
 --- !u!50 &221840643
 Rigidbody2D:
   serializedVersion: 5
@@ -458,6 +459,11 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.7551883, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1171684492 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4575891385969164655, guid: b781a8df408c47c4b892300eb4922221, type: 3}
+  m_PrefabInstance: {fileID: 1571233818675746713}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &1334973450
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -560,6 +566,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53f2c4204d7b8774e935ca43bebff812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AppleMovement
+  effectPrefabs:
+  - {fileID: 1171684492}
 --- !u!4 &1439019878
 Transform:
   m_ObjectHideFlags: 0
