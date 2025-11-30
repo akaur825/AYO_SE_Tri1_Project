@@ -4,7 +4,10 @@ using System.Collections;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField]
-    private float speed;
+    private float minSpeed;
+
+    [SerializeField]
+    private float maxSpeed;
 
     private GameObject player;
 
@@ -20,16 +23,14 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private GameObject smokeEffect;
 
+    private float speed;
 
-    //void Awake()
-    //{
-    //    DontDestroyOnLoad(this.gameObject);
-    //}
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.Find("Player");
+        speed = Random.Range(minSpeed, maxSpeed);
         StartCoroutine(DestroyAfterTimer());
     }
 
