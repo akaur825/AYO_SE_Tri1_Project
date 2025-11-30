@@ -1139,6 +1139,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 645250283}
   m_CullTransparentMesh: 1
+--- !u!1 &857084988 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 985483039366664255, guid: f91edac4d13fc4343ba96bb6a843ad05, type: 3}
+  m_PrefabInstance: {fileID: 87171314}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1093357212
 GameObject:
   m_ObjectHideFlags: 0
@@ -2014,6 +2019,10 @@ PrefabInstance:
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 2051598104}
+    - target: {fileID: 8473292234997465174, guid: e317e57a9a04bc24dbf979c0abc451cc, type: 3}
+      propertyPath: smokeEffect
+      value: 
+      objectReference: {fileID: 857084988}
     - target: {fileID: 8473292234997465174, guid: e317e57a9a04bc24dbf979c0abc451cc, type: 3}
       propertyPath: maxSpawnTime
       value: 15
