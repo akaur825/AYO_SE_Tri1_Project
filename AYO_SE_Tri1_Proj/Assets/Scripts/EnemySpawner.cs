@@ -15,7 +15,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private Transform spawnPoint;
 
-    public bool gameEnded = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
     }
     IEnumerator RandomlySpawnEnemies()
     {
-        while (gameEnded != true)
+        while (true)
         {
             float randomSpawnTime = Random.Range(minSpawnTime, maxSpawnTime);
             yield return new WaitForSeconds(randomSpawnTime);

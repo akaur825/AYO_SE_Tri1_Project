@@ -54,7 +54,7 @@ public class GameTimer : MonoBehaviour
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    private void TimerFinished()
+    public void TimerFinished()
     {
         // show pop-up
         timeUpPanel.SetActive(true);

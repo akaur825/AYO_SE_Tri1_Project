@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class PlayerController : MonoBehaviour
     private Animator playerAnimator;
     public bool gameOver;
     private bool hasEffect;
-    
+    private GameTimer endPanel;  
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -62,6 +64,14 @@ public class PlayerController : MonoBehaviour
 
 
     }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        Debug.Log("COLLISION DETECTED!!!!");
+        endPanel = GameObject.FindGameObjectWithTag("Canvas").GetComponent<GameTimer>();
+        endPanel.TimerFinished();
+    }
+
 
    IEnumerator EffectCooldown()
     {
