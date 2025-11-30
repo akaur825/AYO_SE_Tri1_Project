@@ -77,7 +77,10 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = enemyMovement.MoveTowards(transform, player.transform, speed);
+        if (enemy != null && player != null)
+        {
+            enemy.transform.position = enemyMovement.MoveTowards(transform, player.transform, speed);
+        }
     }
 }
 
