@@ -4,8 +4,8 @@ using System.Collections.Generic;
 public class EffectSpawner : MonoBehaviour
 {
     public GameObject[] effectPrefabs; 
-    private float spawnDelay = 0; //change both to 10 later, 1 for testing purposes
-    private readonly float spawnInterval = 10.0f;
+    private float spawnDelay = 0;
+    private readonly float spawnInterval = 5.0f;
     private int size;
     private PlayerController playerControllerScript;
 

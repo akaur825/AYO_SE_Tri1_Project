@@ -52,7 +52,15 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(EffectCooldown());
         }
 
-       
+        if (other.gameObject.CompareTag("LemonBuff"))
+        {
+            Destroy(other.gameObject);
+            hasEffect = true;
+            speed = 7.0f;
+            StartCoroutine(EffectCooldown());
+        }
+
+
     }
 
    IEnumerator EffectCooldown()
