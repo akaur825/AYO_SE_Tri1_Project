@@ -168,13 +168,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ffb902623d2a7640b40ddf27c53891e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  speed: 1.5
+  speed: 2
   player: {fileID: 0}
   enemy: {fileID: 3535596099349856183}
   enemyMovement: {fileID: 11400000, guid: 1b45a1f6de9d1f74d9ca3ad79870fe40, type: 2}
   timer: 15
-  minSpawnTime: 10
-  maxSpawnTime: 15
+  minSpawnTime: 5
+  maxSpawnTime: 10
   spawnPoint: {fileID: 0}
-  smokeEffect: {fileID: 0}
   gameEnded: 0

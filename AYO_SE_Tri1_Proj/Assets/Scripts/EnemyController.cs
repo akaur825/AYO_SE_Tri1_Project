@@ -27,15 +27,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private Transform spawnPoint;
 
-    [SerializeField]
-    private GameObject smokeEffect;
-
     public bool gameEnded = false;
-
-    void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -65,20 +57,9 @@ public class EnemyController : MonoBehaviour
         Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
     }
 
-    private void OnDisable()
-    {
-        if (gameObject.scene.isLoaded)
-        {
-            GameObject smoke = Instantiate(smokeEffect, transform.position, transform.rotation);
-            ParticleSystem smokeParticleSystem = smoke.GetComponent<ParticleSystem>();
-            smokeParticleSystem.Play();
-        }
-    }
     // Update is called once per frame
     void Update()
     {
         transform.position = enemyMovement.MoveTowards(transform, player.transform, speed);
     }
 }
-
-
