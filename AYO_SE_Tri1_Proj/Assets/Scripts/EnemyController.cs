@@ -6,7 +6,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private float speed;
 
-    [SerializeField]
     private GameObject player;
 
     [SerializeField]
@@ -19,29 +18,19 @@ public class EnemyController : MonoBehaviour
     private float timer;
 
     [SerializeField]
-    private float minSpawnTime;
-
-    [SerializeField]
-    private float maxSpawnTime;
-
-    [SerializeField]
-    private Transform spawnPoint;
-
-    [SerializeField]
     private GameObject smokeEffect;
 
-    public bool gameEnded = false;
 
-    void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
+    //void Awake()
+    //{
+    //    DontDestroyOnLoad(this.gameObject);
+    //}
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        player = GameObject.Find("Player");
         StartCoroutine(DestroyAfterTimer());
-        StartCoroutine(RandomlySpawnEnemies());
     }
 
     IEnumerator DestroyAfterTimer()
@@ -50,20 +39,6 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    IEnumerator RandomlySpawnEnemies()
-    {
-        while (gameEnded != true)
-        {
-            float randomSpawnTime = Random.Range(minSpawnTime, maxSpawnTime);
-            yield return new WaitForSeconds(randomSpawnTime);
-            SpawnEnemy();
-        }
-    }
-
-    void SpawnEnemy()
-    {
-        Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
-    }
 
     private void OnDisable()
     {
