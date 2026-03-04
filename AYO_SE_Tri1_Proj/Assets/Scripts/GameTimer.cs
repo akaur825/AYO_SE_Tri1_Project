@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class GameTimer : MonoBehaviour
 {
+    // hello
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public TMP_Text timerText;
     private readonly float countdownDuration = 90f; // 1.5 minutes countdown
