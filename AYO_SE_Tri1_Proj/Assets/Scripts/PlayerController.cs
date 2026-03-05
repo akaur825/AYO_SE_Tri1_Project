@@ -12,7 +12,8 @@ public class PlayerController : MonoBehaviour
     private Animator playerAnimator;
     public bool gameOver;
     private bool hasEffect;
-    private GameTimer endPanel;  
+    private GameTimer endPanel;
+    private SpeedPlayerState speedPlayerState;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,7 +21,12 @@ public class PlayerController : MonoBehaviour
         playerRb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
         hasEffect = false;
+        speedPlayerState = new NormalSpeedPlayerState(this);
+    }
 
+    void setSpeedState(SpeedPlayerState s)
+    {
+        speedPlayerState = s;
     }
 
     // Update is called once per frame
