@@ -1,16 +1,24 @@
 using UnityEngine;
 
-public class NormalSpeedState : MonoBehaviour
+public class NormalSpeedPlayerState : MonoBehaviour, SpeedPlayerState
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private PlayerController player;
+    public NormalSpeedPlayerState(PlayerController p)
     {
-        
+        player = p;
+    }
+    public void advanceState()
+    {
+        throw new System.NotImplementedException();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void returnState()
     {
-        
+        throw new System.NotImplementedException();
+    }
+
+    public void setState()
+    {
+        throw new System.NotImplementedException();
     }
 }

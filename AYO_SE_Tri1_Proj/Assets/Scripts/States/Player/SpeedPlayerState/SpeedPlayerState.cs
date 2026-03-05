@@ -1,16 +1,7 @@
 using UnityEngine;
 
-public class SpeedState : MonoBehaviour
+public interface SpeedPlayerState : PlayerState
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public void advanceState();
+    public void setState(); //in set state, call PlayerController.setState based on fruit effect
 }
