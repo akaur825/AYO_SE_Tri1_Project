@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private bool hasEffect;
     private GameTimer endPanel;
     private SpeedPlayerState speedPlayerState;
+    private ISpecialEffects specialEffects;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,6 +23,8 @@ public class PlayerController : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         hasEffect = false;
         speedPlayerState = new NormalSpeedPlayerState(this);
+        specialEffects = GameObject.FindAnyObjectByType<SpecialEffectProxy>();
+
     }
 
     void setSpeedState(SpeedPlayerState s)
@@ -74,6 +77,10 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         Debug.Log("COLLISION DETECTED!!!!");
+        if (specialEffects != null)
+        {
+            specialEffects.PlayPlayerDeathEffect(transform.position);
+        }
         endPanel = GameObject.FindGameObjectWithTag("Canvas").GetComponent<GameTimer>();
         endPanel.TimerFinished();
     }

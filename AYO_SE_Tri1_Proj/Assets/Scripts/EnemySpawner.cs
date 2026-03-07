@@ -15,10 +15,12 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private Transform spawnPoint;
 
+    private ISpecialEffects specialEffects;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        specialEffects = GameObject.FindAnyObjectByType<SpecialEffectProxy>();
         StartCoroutine(RandomlySpawnEnemies());
     }
     IEnumerator RandomlySpawnEnemies()
@@ -34,12 +36,10 @@ public class EnemySpawner : MonoBehaviour
     void SpawnEnemy()
     {
         Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
-    }
+        if (specialEffects != null)
+        {
+            specialEffects.PlayEnemySpawnEffect(spawnPoint.position);
+        }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
