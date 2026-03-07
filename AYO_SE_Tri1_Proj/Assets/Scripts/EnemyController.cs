@@ -25,31 +25,27 @@ public class EnemyController : MonoBehaviour
 
     private float speed;
 
+    private ISpecialEffects specialEffects;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.Find("Player");
         speed = Random.Range(minSpeed, maxSpeed);
+        specialEffects = GameObject.FindAnyObjectByType<SpecialEffectProxy>();
         StartCoroutine(DestroyAfterTimer());
     }
 
     IEnumerator DestroyAfterTimer()
     {
         yield return new WaitForSeconds(timer);
+        if (specialEffects != null)
+        {
+            specialEffects.PlayEnemyDeathEffect(transform.position);
+        }
         Destroy(gameObject);
     }
 
-
-    private void OnDisable()
-    {
-        if (gameObject.scene.isLoaded)
-        {
-            GameObject smoke = Instantiate(smokeEffect, transform.position, transform.rotation);
-            ParticleSystem smokeParticleSystem = smoke.GetComponent<ParticleSystem>();
-            smokeParticleSystem.Play();
-        }
-    }
     // Update is called once per frame
     void Update()
     {
