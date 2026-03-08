@@ -14,9 +14,13 @@ public class PlayerStateDisplay : MonoBehaviour
         _broker = broker;
     }
 
-    void OnEnable()
+    private void Start()
     {
         _broker.Subscribe<PlayerStateChanged>(OnStateChanged);
+    }
+    void OnEnable()
+    {
+        //_broker.Subscribe<PlayerStateChanged>(OnStateChanged);
     }
 
     void OnDisable()
