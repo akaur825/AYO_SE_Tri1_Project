@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private GameTimer endPanel;
     private SpeedPlayerState speedPlayerState;
     private ISpecialEffects specialEffects;
+    private IBroker _broker;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,12 +25,19 @@ public class PlayerController : MonoBehaviour
         hasEffect = false;
         speedPlayerState = new NormalSpeedPlayerState(this);
         specialEffects = GameObject.FindAnyObjectByType<SpecialEffectProxy>();
+        
 
-    }
+}
+
 
     void setSpeedState(SpeedPlayerState s)
     {
         speedPlayerState = s;
+    }
+
+    public void Construct(IBroker broker)
+    {
+        _broker = broker;
     }
 
     // Update is called once per frame
@@ -65,6 +73,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("LemonBuff"))
         {
+            SetState(new NormalSpeedPlayerState(this));
             Destroy(other.gameObject);
             hasEffect = true;
             speed = 7.0f;
@@ -85,8 +94,22 @@ public class PlayerController : MonoBehaviour
         endPanel.TimerFinished();
     }
 
+    public void SetState(SpeedPlayerState newState)
+    {
 
-   IEnumerator EffectCooldown()
+        if (speedPlayerState == newState)
+            return;
+
+        speedPlayerState = newState;
+
+        //if (_broker == null)
+        //    Debug.LogError("Broker is NULL!");
+
+        _broker.NotifyObservers(new PlayerStateChanged(newState));
+    }
+
+
+    IEnumerator EffectCooldown()
     {
         yield return new WaitForSeconds(7);
         hasEffect = false;
