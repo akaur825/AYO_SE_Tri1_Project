@@ -1,21 +1,6 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets.Scripts
+public abstract class State : MonoBehaviour
 {
-    public class State : MonoBehaviour
-    {
-
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-    }
+    public abstract State Act();
 }
