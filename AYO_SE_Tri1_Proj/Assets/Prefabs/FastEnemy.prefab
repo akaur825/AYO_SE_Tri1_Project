@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7699076175086670887}
   - component: {fileID: 8645937544662537990}
   m_Layer: 0
-  m_Name: Enemy1
+  m_Name: FastEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 0369e4a3358bf1f45978943056e6e27c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3921208, g: 0, b: 0.5849056, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -168,9 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ffb902623d2a7640b40ddf27c53891e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  minSpeed: 1.5
-  maxSpeed: 2
-  enemy: {fileID: 3535596099349856183}
+  minSpeed: 2
+  maxSpeed: 3
   enemyMovement: {fileID: 11400000, guid: 1b45a1f6de9d1f74d9ca3ad79870fe40, type: 2}
-  timer: 15
+  timer: 8
   smokeEffect: {fileID: 985483039366664255, guid: f91edac4d13fc4343ba96bb6a843ad05, type: 3}

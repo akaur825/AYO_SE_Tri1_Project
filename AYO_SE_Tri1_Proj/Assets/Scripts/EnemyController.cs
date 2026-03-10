@@ -1,18 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IEnemy
 {
     [SerializeField]
     private float minSpeed;
 
     [SerializeField]
     private float maxSpeed;
-
-    private GameObject player;
-
-    [SerializeField]
-    private GameObject enemy;
 
     [SerializeField]
     private EnemyMovement enemyMovement;
@@ -24,11 +19,11 @@ public class EnemyController : MonoBehaviour
     private GameObject smokeEffect;
 
     private float speed;
-
+    private GameObject player;
     private ISpecialEffects specialEffects;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    public void Initialize()
     {
         player = GameObject.Find("Player");
         speed = Random.Range(minSpeed, maxSpeed);
@@ -49,9 +44,9 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemy != null && player != null)
+        if ( player != null && enemyMovement != null)
         {
-            enemy.transform.position = enemyMovement.MoveTowards(transform, player.transform, speed);
+            transform.position = enemyMovement.MoveTowards(transform, player.transform, speed);
         }
     }
 }
