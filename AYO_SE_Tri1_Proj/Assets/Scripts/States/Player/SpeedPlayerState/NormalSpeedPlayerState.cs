@@ -12,6 +12,11 @@ public class NormalSpeedPlayerState : SpeedPlayerState
         speed = 5.0f;
     }
 
+    public override State Act()
+    {
+        return this;
+    }
+
     public override SpeedPlayerState advanceState(Collider2D other)
     {
         if (other.gameObject.CompareTag("AppleDebuff"))
