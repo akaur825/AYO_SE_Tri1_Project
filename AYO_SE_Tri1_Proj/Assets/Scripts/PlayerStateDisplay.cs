@@ -45,10 +45,10 @@ public class PlayerStateDisplay : MonoBehaviour
             stateText.text = "Apple! Slow...";
             stateBackground.color = Color.red;
         }
-        else if (evnt.State is SpeedyPlayerSpeedState)
+        else if (evnt.State is SpeedySpeedPlayerState)
         {
             stateText.text = "Lemon! Fast!!!";
-            stateBackground.color = Color.blue;
+            stateBackground.color = Color.yellow;
         }
     }
 }

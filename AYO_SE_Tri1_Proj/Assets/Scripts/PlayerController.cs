@@ -25,9 +25,11 @@ public class PlayerController : MonoBehaviour
         hasEffect = false;
         speedPlayerState = new NormalSpeedPlayerState(this);
         specialEffects = GameObject.FindAnyObjectByType<SpecialEffectProxy>();
-        
+        SetState(new NormalSpeedPlayerState(this));
 
-}
+
+
+    }
 
 
     void setSpeedState(SpeedPlayerState s)
@@ -65,6 +67,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("AppleDebuff"))
         {
+            SetState(new SlowSpeedPlayerState(this));
             Destroy(other.gameObject);
             hasEffect = true;
             speed = 3.0f;
@@ -73,7 +76,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("LemonBuff"))
         {
-            SetState(new NormalSpeedPlayerState(this));
+            SetState(new SpeedySpeedPlayerState(this));
             Destroy(other.gameObject);
             hasEffect = true;
             speed = 7.0f;
@@ -114,5 +117,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(7);
         hasEffect = false;
         speed = speedNormal;
+        SetState(new NormalSpeedPlayerState(this));
     }
 }
