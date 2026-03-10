@@ -23,12 +23,19 @@ public class PlayerController : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         speedPlayerState = new NormalSpeedPlayerState(this);
         specialEffects = GameObject.FindAnyObjectByType<SpecialEffectProxy>();
-        SetState(new NormalSpeedPlayerState(this));
+        SetState(speedPlayerState);
     }
 
-    void setSpeedState(SpeedPlayerState s, Collider2D other)
+    public void advanceSpeedState(SpeedPlayerState s, Collider2D other)
     {
-        speedPlayerState = speedPlayerState.advanceState(other);
+        if(other is null)
+        {
+            speedPlayerState = s;
+        }
+        else
+        {
+            speedPlayerState = speedPlayerState.advanceState(other);
+        }
         speedPlayerStateToString = speedPlayerState.PlayerStateToString();
         Debug.Log(speedPlayerStateToString);
     }
@@ -55,12 +62,12 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         playerRb.linearVelocity = input * speedPlayerState.getSpeed();
-        Debug.Log(playerRb.linearVelocity);
+        //Debug.Log(playerRb.linearVelocity);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        setSpeedState(speedPlayerState, other);
+        advanceSpeedState(speedPlayerState, other);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
