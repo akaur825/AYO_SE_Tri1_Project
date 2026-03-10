@@ -9,6 +9,11 @@ public class SpeedySpeedPlayerState : SpeedPlayerState
         speed = 7.0f;
     }
 
+    public override State Act()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override SpeedPlayerState advanceState(Collider2D other)
     {
         throw new System.NotImplementedException();
