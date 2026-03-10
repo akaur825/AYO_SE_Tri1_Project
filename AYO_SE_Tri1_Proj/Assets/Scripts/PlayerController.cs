@@ -1,38 +1,36 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEngine;
+using static Codice.Client.Common.EventTracking.TrackFeatureUseEvent.Features.DesktopGUI.Filters;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 5.0f;
-    private float speedNormal = 5.0f;
     private Vector2 input;
     private Rigidbody2D playerRb;
     private Animator playerAnimator;
     public bool gameOver;
-    private bool hasEffect;
     private GameTimer endPanel;
     private SpeedPlayerState speedPlayerState;
     private ISpecialEffects specialEffects;
     private IBroker _broker;
+    private string speedPlayerStateToString;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
-        hasEffect = false;
         speedPlayerState = new NormalSpeedPlayerState(this);
         specialEffects = GameObject.FindAnyObjectByType<SpecialEffectProxy>();
-        
+        SetState(new NormalSpeedPlayerState(this));
+    }
 
-}
-
-
-    void setSpeedState(SpeedPlayerState s)
+    void setSpeedState(SpeedPlayerState s, Collider2D other)
     {
-        speedPlayerState = s;
+        speedPlayerState = speedPlayerState.advanceState(other);
+        speedPlayerStateToString = speedPlayerState.PlayerStateToString();
+        Debug.Log(speedPlayerStateToString);
     }
 
     public void Construct(IBroker broker)
@@ -55,32 +53,13 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        playerRb.linearVelocity = input * speed;
+        playerRb.linearVelocity = input * speedPlayerState.getSpeed();
         Debug.Log(playerRb.linearVelocity);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (hasEffect) {return;}
-
-        if (other.gameObject.CompareTag("AppleDebuff"))
-        {
-            Destroy(other.gameObject);
-            hasEffect = true;
-            speed = 3.0f;
-            StartCoroutine(EffectCooldown());
-        }
-
-        if (other.gameObject.CompareTag("LemonBuff"))
-        {
-            SetState(new NormalSpeedPlayerState(this));
-            Destroy(other.gameObject);
-            hasEffect = true;
-            speed = 7.0f;
-            StartCoroutine(EffectCooldown());
-        }
-
-
+        setSpeedState(speedPlayerState, other);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -106,13 +85,5 @@ public class PlayerController : MonoBehaviour
         //    Debug.LogError("Broker is NULL!");
 
         _broker.NotifyObservers(new PlayerStateChanged(newState));
-    }
-
-
-    IEnumerator EffectCooldown()
-    {
-        yield return new WaitForSeconds(7);
-        hasEffect = false;
-        speed = speedNormal;
     }
 }

@@ -13,4 +13,14 @@ public class SpeedySpeedPlayerState : SpeedPlayerState
     {
         throw new System.NotImplementedException();
     }
+
+    /*
+         IEnumerator EffectCooldown()
+    {
+        yield return new WaitForSeconds(7);
+        hasEffect = false;
+        speed = speedNormal;
+        SetState(new NormalSpeedPlayerState(this));
+    }
+     */
 }
