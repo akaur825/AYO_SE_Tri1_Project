@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public interface PlayerState
+public abstract class PlayerState
 {
-    public void returnState();
+    protected PlayerController player;
+    public abstract string PlayerStateToString();
 }

@@ -1,24 +1,30 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using NUnit.Framework;
 
-public class NormalSpeedPlayerState : MonoBehaviour, SpeedPlayerState
+public class NormalSpeedPlayerState : SpeedPlayerState
 {
-    private PlayerController player;
     public NormalSpeedPlayerState(PlayerController p)
     {
         player = p;
-    }
-    public void advanceState()
-    {
-        throw new System.NotImplementedException();
+        speed = 5.0f;
     }
 
-    public void returnState()
+    public override SpeedPlayerState advanceState(Collider2D other)
     {
-        throw new System.NotImplementedException();
-    }
+        if (other.gameObject.CompareTag("AppleDebuff"))
+        {
+            UnityEngine.Object.Destroy(other.gameObject);
+            return new SlowSpeedPlayerState(player);
+        }
 
-    public void setState()
-    {
-        throw new System.NotImplementedException();
+        else if (other.gameObject.CompareTag("LemonBuff"))
+        {
+            UnityEngine.Object.Destroy(other.gameObject);
+            return new SpeedySpeedPlayerState(player);
+        }
+        else return this;
     }
 }

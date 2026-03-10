@@ -1,7 +1,13 @@
 using UnityEngine;
 
-public interface SpeedPlayerState : PlayerState
+public abstract class SpeedPlayerState : PlayerState
 {
-    public void advanceState();
-    public void setState(); //in set state, call PlayerController.setState based on fruit effect
+    [SerializeField]
+    protected float speed;
+    public abstract SpeedPlayerState advanceState(Collider2D other); //in set state, call PlayerController.setState based on fruit effect
+
+    public override string PlayerStateToString()
+    {
+        return "The current Player Speed State is " + this.GetType();
+    }
 }
