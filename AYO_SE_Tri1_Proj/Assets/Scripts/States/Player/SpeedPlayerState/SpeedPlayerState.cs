@@ -13,6 +13,6 @@ public abstract class SpeedPlayerState : PlayerState
 
     public override string PlayerStateToString()
     {
-        return "The current Player Speed State is " + this.GetType();
+        return "" + this.GetType();
     }
 }

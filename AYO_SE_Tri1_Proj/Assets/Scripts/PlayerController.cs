@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         speedPlayerState = new NormalSpeedPlayerState(this);
         specialEffects = GameObject.FindAnyObjectByType<SpecialEffectProxy>();
-        _broker.NotifyObservers(new PlayerStateChanged(speedPlayerState));
+        _broker.NotifyObservers(speedPlayerState.PlayerStateToString());
     }
 
     public void advanceSpeedState(SpeedPlayerState s, Collider2D other)
@@ -31,19 +31,19 @@ public class PlayerController : MonoBehaviour
         if(other is null)
         {
             speedPlayerState = s;
-            _broker.NotifyObservers(new PlayerStateChanged(speedPlayerState));
+            _broker.NotifyObservers(speedPlayerState.PlayerStateToString());
         }
         else
         {
             speedPlayerState = speedPlayerState.advanceState(other);
-            _broker.NotifyObservers(new PlayerStateChanged(speedPlayerState));
+            _broker.NotifyObservers(speedPlayerState.PlayerStateToString());
         }
-        speedPlayerStateToString = speedPlayerState.PlayerStateToString();
+        speedPlayerStateToString = "The current Player Speed State is " + speedPlayerState.PlayerStateToString();
         Debug.Log(speedPlayerStateToString);
-        _broker.NotifyObservers(new PlayerStateChanged(speedPlayerState));
+        _broker.NotifyObservers(speedPlayerStateToString);
     }
 
-    public void Construct(IBroker broker)
+    public void SetDependency(IBroker broker)
     {
         _broker = broker;
     }

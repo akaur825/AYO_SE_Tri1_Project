@@ -9,43 +9,39 @@ public class PlayerStateDisplay : MonoBehaviour
 
     private IBroker _broker;
 
-    public void Construct(IBroker broker)
+    public void SetDependency(IBroker broker)
     {
         _broker = broker;
     }
 
-    private void Start()
+    public void Start()
     {
-        _broker.Subscribe<PlayerStateChanged>(OnStateChanged);
+        _broker.Subscribe(OnStateChanged);
     }
     void OnEnable()
     {
-        //_broker.Subscribe<PlayerStateChanged>(OnStateChanged);
+        // cannot subscribe here due to the order of execution of the Start and OnEnable methods
     }
 
-    void OnDisable()
+    public void OnDisable()
     {
-        _broker.Unsubscribe<PlayerStateChanged>(OnStateChanged);
+        _broker.Unsubscribe(OnStateChanged);
     }
 
-    private void OnStateChanged(PlayerStateChanged evnt)
+    public void OnStateChanged(string state)
     {
-        // NEEDS TO BE FIXED TO ACCOUNT FOR ALL STATES CHANGING, NOT JUST SPEEDY PLAYER SPEED STATE
 
-        //stateText.text = "switched state";
-        //stateBackground.color = Color.lightPink;
-
-        if (evnt.State is NormalSpeedPlayerState)
+        if (state == "NormalSpeedPlayerState")
         {
             stateText.text = "No Effects Equipped";
             stateBackground.color = Color.cyan;
         }
-        else if (evnt.State is SlowSpeedPlayerState)
+        else if (state == "SlowSpeedPlayerState")
         {
             stateText.text = "Apple! Slow...";
             stateBackground.color = Color.red;
         }
-        else if (evnt.State is SpeedySpeedPlayerState)
+        else if (state == "SpeedySpeedPlayerState")
         {
             stateText.text = "Lemon! Fast!!!";
             stateBackground.color = Color.yellow;
