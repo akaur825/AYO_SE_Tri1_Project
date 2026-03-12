@@ -11,7 +11,7 @@ public class GameBootStrap : MonoBehaviour
     {
         broker = new Broker();
 
-        player.Construct(broker);
-        display.Construct(broker);
+        player.SetDependency(broker);
+        display.SetDependency(broker);
     }
 }

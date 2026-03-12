@@ -23,39 +23,24 @@ public class PlayerController : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         speedPlayerState = new NormalSpeedPlayerState(this);
         specialEffects = GameObject.FindAnyObjectByType<SpecialEffectProxy>();
-        SetState(speedPlayerState);
+        _broker.NotifyObservers(speedPlayerState.PlayerStateToString());
     }
 
     private void speedStateUpdated()
     {
-<<<<<<< Updated upstream
-        if(other is null)
-        {
-            speedPlayerState = s;
-        }
-        else
-        {
-            speedPlayerState = speedPlayerState.advanceState(other);
-        }
-        speedPlayerStateToString = speedPlayerState.PlayerStateToString();
-=======
         _broker.NotifyObservers(speedPlayerState.PlayerStateToString());
         speedPlayerStateToString = "The current Player Speed State is " + speedPlayerState.PlayerStateToString();
->>>>>>> Stashed changes
         Debug.Log(speedPlayerStateToString);
+        _broker.NotifyObservers(speedPlayerStateToString);
     }
 
-<<<<<<< Updated upstream
-    public void Construct(IBroker broker)
-=======
     public void advanceSpeedStateDirectly(SpeedPlayerState newState)
     {
         speedPlayerState = newState;
         speedStateUpdated();
     }
-
-    public void SetDependency(IBroker broker)
->>>>>>> Stashed changes
+    
+    public void Construct(IBroker broker)
     {
         _broker = broker;
     }
@@ -94,19 +79,5 @@ public class PlayerController : MonoBehaviour
         }
         endPanel = GameObject.FindGameObjectWithTag("Canvas").GetComponent<GameTimer>();
         endPanel.TimerFinished();
-    }
-
-    public void SetState(SpeedPlayerState newState)
-    {
-
-        if (speedPlayerState == newState)
-            return;
-
-        speedPlayerState = newState;
-
-        //if (_broker == null)
-        //    Debug.LogError("Broker is NULL!");
-
-        _broker.NotifyObservers(new PlayerStateChanged(newState));
     }
 }

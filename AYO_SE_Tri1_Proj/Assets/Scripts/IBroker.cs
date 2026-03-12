@@ -5,7 +5,7 @@ using System;
 
 public interface IBroker
 {
-    void NotifyObservers<T>(T m);
-    void Subscribe<T>(Action<T> handler);
-    void Unsubscribe<T>(Action<T> handler);
+    void NotifyObservers(string message);
+    void Subscribe(Action<string> handler);
+    void Unsubscribe(Action<string> handler);
 }
