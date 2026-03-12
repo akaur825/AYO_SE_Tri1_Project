@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         speedStateUpdated();
     }
     
-    public void Construct(IBroker broker)
+    public void SetDependency(IBroker broker)
     {
         _broker = broker;
     }
