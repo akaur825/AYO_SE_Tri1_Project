@@ -31,7 +31,6 @@ public class PlayerController : MonoBehaviour
         _broker.NotifyObservers(speedPlayerState.PlayerStateToString());
         speedPlayerStateToString = "The current Player Speed State is " + speedPlayerState.PlayerStateToString();
         Debug.Log(speedPlayerStateToString);
-        _broker.NotifyObservers(speedPlayerStateToString);
     }
 
     public void advanceSpeedStateDirectly(SpeedPlayerState newState)
