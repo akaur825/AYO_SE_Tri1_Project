@@ -37,8 +37,7 @@ public class EnemySpawner : MonoBehaviour
             float waitTime = Random.Range(minSpawnTime, maxSpawnTime);
             yield return new WaitForSeconds(waitTime);
 
-            // Spawn 2 Basic + 1 Fast
-            SpawnEnemy(basicFactory);
+            // Spawn 1 Basic + 1 Fast
             SpawnEnemy(basicFactory);
             SpawnEnemy(fastFactory);
         }
