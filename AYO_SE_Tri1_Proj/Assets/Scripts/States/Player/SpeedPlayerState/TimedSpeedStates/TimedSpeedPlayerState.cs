@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimedSpeedPlayerState : SpeedPlayerState
+public abstract class TimedSpeedPlayerState : SpeedPlayerState
 {
-    private bool stillWaiting = true;
+    //private bool stillWaiting = true;
     private float effecCooldown;
+    private float endTime;
     public TimedSpeedPlayerState(PlayerController p)
     {
         player = p;
         effecCooldown = Random.Range(5f, 8f);
-        player.StartCoroutine(EffectCooldown(effecCooldown));
+        endTime = Time.time + effecCooldown; 
+        //player.StartCoroutine(EffectCooldown(effecCooldown));
     }
 
     public override SpeedPlayerState advanceState(Collider2D other)
@@ -18,23 +20,22 @@ public class TimedSpeedPlayerState : SpeedPlayerState
         return this;
     }
 
-    protected override State CheckTransition()
+    public override State CheckTransition()
     {
-        if (stillWaiting)
+        //if (stillWaiting)
+        if(Time.time < endTime)
         {
             return this;
         }
         else
         {
-            NormalSpeedPlayerState normalState= new NormalSpeedPlayerState(player);
-            player.advanceSpeedStateDirectly(normalState);
-            return normalState;
+            return new NormalSpeedPlayerState(player);
         }
     }
 
-    private IEnumerator EffectCooldown(float effectCooldown)
-    {
-        yield return new WaitForSeconds(effectCooldown);
-        stillWaiting = false;
-    }
+    //private IEnumerator EffectCooldown(float effectCooldown)
+    //{
+    //    yield return new WaitForSeconds(effectCooldown);
+    //    stillWaiting = false;
+    //}
 }

@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private ISpecialEffects specialEffects;
     private IBroker _broker;
     private string speedPlayerStateToString;
-
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -54,7 +54,11 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetFloat("Horizontal", input.x);
         playerAnimator.SetFloat("Vertical", input.y);
         playerAnimator.SetFloat("Speed", input.sqrMagnitude);
-        speedPlayerState.Act();
+        State nextState = speedPlayerState.Act();
+        if (nextState != speedPlayerState && nextState is SpeedPlayerState speedState)
+        {
+            advanceSpeedStateDirectly(speedState);
+        }
     }
 
     private void FixedUpdate()
