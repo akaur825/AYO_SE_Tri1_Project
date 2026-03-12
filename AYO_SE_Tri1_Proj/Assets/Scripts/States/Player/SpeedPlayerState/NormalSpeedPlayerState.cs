@@ -16,19 +16,19 @@ public class NormalSpeedPlayerState : SpeedPlayerState
     {
         if (other.gameObject.CompareTag("AppleDebuff"))
         {
-            UnityEngine.Object.Destroy(other.gameObject);
+            PerformDestroy(other.gameObject);
             return new SlowEffectTimedSpeedPlayerState(player);
         }
 
         else if (other.gameObject.CompareTag("LemonBuff"))
         {
-            UnityEngine.Object.Destroy(other.gameObject);
+            PerformDestroy(other.gameObject);
             return new SpeedyEffectTimedSpeedPlayerState(player);
         }
         else return this;
     }
 
-    protected override State CheckTransition()
+    public override State CheckTransition()
     {
         return this;
     }

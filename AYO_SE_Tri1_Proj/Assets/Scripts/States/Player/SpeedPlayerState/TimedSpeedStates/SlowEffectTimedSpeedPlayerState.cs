@@ -9,4 +9,3 @@ public class SlowEffectTimedSpeedPlayerState : TimedSpeedPlayerState
         speed = 3.0f;
     }
 }
-

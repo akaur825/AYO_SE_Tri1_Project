@@ -1,7 +1,7 @@
 // YASHVI TRIVEDI
 
 // I only tested for one specific event, which was the "SlowSpeedPlayerState" event, since the other events are pretty much the same,
-// just with different text and colors, so if one of them work, all of them shoud.
+// just with different text and colors, so if one of them work, all of them should.
 // I also tested that the display subscribes and unsubscribes to the broker correctly. I used NSubstitute to create a mock broker,
 // which allows verification that the Subscribe and Unsubscribe methods were called with the correct parameters.
 // I tested the broker triggering the UI change besides the direct call to the OnStateChanged method,
