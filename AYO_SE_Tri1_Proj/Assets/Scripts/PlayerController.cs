@@ -26,24 +26,21 @@ public class PlayerController : MonoBehaviour
         _broker.NotifyObservers(speedPlayerState.PlayerStateToString());
     }
 
-    public void advanceSpeedState(SpeedPlayerState s, Collider2D other)
+    private void speedStateUpdated()
     {
-        if(other is null)
-        {
-            speedPlayerState = s;
-            _broker.NotifyObservers(speedPlayerState.PlayerStateToString());
-        }
-        else
-        {
-            speedPlayerState = speedPlayerState.advanceState(other);
-            _broker.NotifyObservers(speedPlayerState.PlayerStateToString());
-        }
+        _broker.NotifyObservers(speedPlayerState.PlayerStateToString());
         speedPlayerStateToString = "The current Player Speed State is " + speedPlayerState.PlayerStateToString();
         Debug.Log(speedPlayerStateToString);
         _broker.NotifyObservers(speedPlayerStateToString);
     }
 
-    public void SetDependency(IBroker broker)
+    public void advanceSpeedStateDirectly(SpeedPlayerState newState)
+    {
+        speedPlayerState = newState;
+        speedStateUpdated();
+    }
+    
+    public void Construct(IBroker broker)
     {
         _broker = broker;
     }
@@ -59,7 +56,6 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetFloat("Vertical", input.y);
         playerAnimator.SetFloat("Speed", input.sqrMagnitude);
         speedPlayerState.Act();
-
     }
 
     private void FixedUpdate()
@@ -70,7 +66,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        advanceSpeedState(speedPlayerState, other);
+        speedPlayerState = speedPlayerState.advanceState(other);
+        speedStateUpdated();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
