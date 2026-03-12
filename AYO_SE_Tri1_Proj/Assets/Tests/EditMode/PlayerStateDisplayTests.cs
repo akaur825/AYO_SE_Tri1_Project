@@ -72,7 +72,7 @@ public class PlayerStateDisplayTests
     public void OnStateChanged_SlowState_UpdatesUI()
     {
         // Arrange
-        var state = "SlowSpeedPlayerState";
+        var state = "SlowEffectTimedSpeedPlayerState";
         // Act
         display.OnStateChanged(state);
         // Assert
@@ -92,7 +92,7 @@ public class PlayerStateDisplayTests
         display.Start();
 
         // Act
-        handler?.Invoke("SpeedySpeedPlayerState");
+        handler?.Invoke("SpeedyEffectTimedSpeedPlayerState");
         // Assert
         Assert.AreEqual("Lemon! Fast!!!", displayText.text);
         Assert.AreEqual(Color.yellow, displayPannel.color);
@@ -114,7 +114,7 @@ public class PlayerStateDisplayTests
 
         // Act
         display.OnDisable();
-        handler?.Invoke("SlowSpeedPlayerState");
+        handler?.Invoke("SlowEffectTimedSpeedPlayerState");
         // Assert
         Assert.AreNotEqual("Apple! Slow...", displayText.text);
         Assert.AreNotEqual(Color.red, displayPannel.color);
