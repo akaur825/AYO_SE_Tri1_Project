@@ -40,12 +40,20 @@ public class PlayerStateDisplay : MonoBehaviour
             stateText.text = "No Effects Equipped";
             stateBackground.color = Color.cyan;
         }
+<<<<<<< Updated upstream
         else if (evnt.State is SlowSpeedPlayerState)
+=======
+        else if (state == "SlowEffectTimedSpeedPlayerState")
+>>>>>>> Stashed changes
         {
             stateText.text = "Apple! Slow...";
             stateBackground.color = Color.red;
         }
+<<<<<<< Updated upstream
         else if (evnt.State is SpeedySpeedPlayerState)
+=======
+        else if (state == "SpeedyEffectTimedSpeedPlayerState")
+>>>>>>> Stashed changes
         {
             stateText.text = "Lemon! Fast!!!";
             stateBackground.color = Color.yellow;

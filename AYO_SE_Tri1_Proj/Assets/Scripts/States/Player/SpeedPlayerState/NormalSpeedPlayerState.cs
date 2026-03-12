@@ -12,24 +12,24 @@ public class NormalSpeedPlayerState : SpeedPlayerState
         speed = 5.0f;
     }
 
-    public override State Act()
-    {
-        return this;
-    }
-
     public override SpeedPlayerState advanceState(Collider2D other)
     {
         if (other.gameObject.CompareTag("AppleDebuff"))
         {
             UnityEngine.Object.Destroy(other.gameObject);
-            return new SlowSpeedPlayerState(player);
+            return new SlowEffectTimedSpeedPlayerState(player);
         }
 
         else if (other.gameObject.CompareTag("LemonBuff"))
         {
             UnityEngine.Object.Destroy(other.gameObject);
-            return new SpeedySpeedPlayerState(player);
+            return new SpeedyEffectTimedSpeedPlayerState(player);
         }
         else return this;
+    }
+
+    protected override State CheckTransition()
+    {
+        return this;
     }
 }

@@ -8,6 +8,10 @@ public class EffectSpawner : MonoBehaviour
     private readonly float spawnInterval = 5.0f;
     private int size;
     private PlayerController playerControllerScript;
+<<<<<<< Updated upstream
+=======
+    private float range = 7.0f;
+>>>>>>> Stashed changes
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
